@@ -135,10 +135,11 @@ hr {
   border: none;
 }
 
-.link-code {
+.site-code {
   display: block;
   margin: 0 400px;
   font-size: 14px;
+  width: fit-content;
 }
 
 .git-link {
