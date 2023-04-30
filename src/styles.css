@@ -18,7 +18,7 @@ hr {
 
 .wrapper {
   max-width: 500px;
-  margin: 30px auto;
+  margin: 30px auto 15px;
   padding: 10px 30px;
   background-color: #cceeff;
   border-radius: 10px;
@@ -137,7 +137,7 @@ hr {
 
 .link-code {
   display: block;
-  margin: 0 110px;
+  margin: 0 400px;
   font-size: 14px;
 }
 
