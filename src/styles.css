@@ -134,3 +134,13 @@ hr {
   background-color: #cceeff;
   border: none;
 }
+
+.link-code {
+  display: block;
+  margin: 0 110px;
+  font-size: 14px;
+}
+
+.git-link {
+  text-decoration: none;
+}
