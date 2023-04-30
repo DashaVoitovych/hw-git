@@ -16,9 +16,12 @@ hr {
   border: 2px dotted #000;
 }
 
-.wrapper {
+.position-wrap {
   max-width: 500px;
   margin: 30px auto 15px;
+}
+
+.wrapper {
   padding: 10px 30px;
   background-color: #cceeff;
   border-radius: 10px;
@@ -136,10 +139,9 @@ hr {
 }
 
 .site-code {
-  display: block;
-  margin: 0 400px;
+  padding-top: 10px;
   font-size: 14px;
-  width: fit-content;
+  white-space: nowrap;
 }
 
 .git-link {
