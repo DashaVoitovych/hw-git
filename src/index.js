@@ -13,8 +13,8 @@ function formatDate(date) {
   let currentHour = date.getHours();
   let currentMinute = date.getMinutes();
   let currentYear = date.getFullYear();
-  let currentMonth = date.getMonth();
-  let currentDate = date.getDate();
+  let currentMonth = ("0" + (date.getMonth() + 1)).slice(-2);
+  let currentDate = `0${date.getDate()}`.slice(-2);
   let dayHour = document.querySelector("#day-hour");
   dayHour.innerHTML = `${currentDay}  ${currentHour}:${currentMinute}`;
   let fullTime = document.querySelector("#date");
@@ -24,8 +24,6 @@ function formatDate(date) {
 formatDate(currentTime);
 
 function showTemperature(response) {
-  console.log(response);
-  console.log(response.data.main.temp);
   let temperature = Math.round(response.data.main.temp);
   let city = response.data.name;
   let h1 = document.querySelector("h1");
@@ -37,7 +35,6 @@ function showTemperature(response) {
 function searchForCity(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-text-input");
-  console.log(cityInput.value);
 
   let apiKey = "017d56650cd168d68067850318775d43";
   let units = "metric";
@@ -49,7 +46,6 @@ let citySearch = document.querySelector("#city-search");
 citySearch.addEventListener("submit", searchForCity);
 
 function showTemp(response) {
-  console.log(response.data.main.temp);
   let yourTemp = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#current-temp");
   currentTemp.innerHTML = `${yourTemp}°`;
@@ -60,9 +56,7 @@ function showTemp(response) {
 
 function showPosition(position) {
   let lat = position.coords.latitude;
-  console.log(lat);
   let lon = position.coords.longitude;
-  console.log(lon);
   let apiKey = "597c40c39084687093b091cd48b366f8";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemp);
