@@ -63,10 +63,10 @@ hr {
   cursor: pointer;
 }
 
-.fa-sun {
-  margin: 28px 48px 6px;
-  color: gold;
-  font-size: 34px;
+.current-weather-icon {
+  margin-right: 5px;
+  height: 64px;
+  width: 64px;
 }
 
 .temp-now {

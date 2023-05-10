@@ -13,8 +13,8 @@ function formatDate(date) {
   let currentHour = date.getHours();
   let currentMinute = date.getMinutes();
   let currentYear = date.getFullYear();
-  let currentMonth = date.getMonth();
-  let currentDate = date.getDate();
+  let currentMonth = ("0" + (date.getMonth() + 1)).slice(-2);
+  let currentDate = `0${date.getDate()}`.slice(-2);
   let dayHour = document.querySelector("#day-hour");
   dayHour.innerHTML = `${currentDay}  ${currentHour}:${currentMinute}`;
   let fullTime = document.querySelector("#date");
@@ -25,13 +25,19 @@ formatDate(currentTime);
 
 function showTemperature(response) {
   console.log(response);
-  console.log(response.data.main.temp);
-  let temperature = Math.round(response.data.main.temp);
-  let city = response.data.name;
+  console.log(response.data.temperature.current);
+  let temperature = Math.round(response.data.temperature.current);
+  let city = response.data.city;
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${city}`;
   let tempNow = document.querySelector("#current-temp");
   tempNow.innerHTML = `${temperature}°`;
+  let iconElement = document.querySelector("#current-weather-icon");
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/${response.data.condition.icon}`
+  );
+  iconElement.setAttribute("alt", response.data.condition.description);
 }
 
 function searchForCity(event) {
@@ -39,9 +45,9 @@ function searchForCity(event) {
   let cityInput = document.querySelector("#city-text-input");
   console.log(cityInput.value);
 
-  let apiKey = "017d56650cd168d68067850318775d43";
+  let apiKey = "84fcftd03of3d3844ecba1bafb7d3009";
   let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityInput.value}&key=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showTemperature);
 }
 
