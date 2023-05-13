@@ -32,17 +32,11 @@ function showTemperature(response) {
   h1.innerHTML = `${city}`;
   let tempNow = document.querySelector("#current-temp");
   tempNow.innerHTML = `${temperature}°`;
-  document
-    .querySelector("#current-weather-icon")
-    .setAttribute(
-      "src",
-      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-    );
-  document
-    .querySelector("#current-weather-icon")
-    .setAttribute("alt", response.data.weather[0].description);
-  form.reset();
+  let iconElement = document.querySelector("#current-weather-icon");
+  iconElement.setAttribute("src", `${response.data.condition.icon_url}`);
+  iconElement.setAttribute("alt", response.data.condition.description);
 }
+
 
 function searchForCity(event) {
   event.preventDefault();
