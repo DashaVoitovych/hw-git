@@ -8,6 +8,7 @@ body {
 h1 {
   line-height: 1.2;
   font-weight: 400;
+  text-align: left;
 }
 
 hr {
@@ -50,6 +51,7 @@ hr {
 }
 
 .geo-mark {
+  display: block;
   border: none;
   background-color: #cceeff;
   width: fit-content;
@@ -75,7 +77,8 @@ hr {
   font-weight: 400;
   border: 2px solid #4c5363;
   border-radius: 50px;
-  padding-top: 16px;
+  padding: 15px 15px;
+  max-height: 110px;
 }
 
 .celcium {
