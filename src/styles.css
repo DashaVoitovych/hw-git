@@ -87,14 +87,16 @@ hr {
   top: -20px;
 }
 
-a {text-decoration: none;}
+a {
+  text-decoration: none;
+}
 
 .active {
   cursor: default;
   color: #4c5363;
 }
 
-day {
+.day {
   margin-top: 10px;
   margin-bottom: 8px;
   font-size: 18px;
