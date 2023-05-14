@@ -26,22 +26,23 @@ formatDate(currentTime);
 function showTemperature(response) {
   console.log(response);
   console.log(response.data.temperature.current);
-  let temperature = Math.round(response.data.temperature.current);
+  celsiusTemperature = response.data.temperature.current;
+  let temperature = Math.round(celsiusTemperature);
   let city = response.data.city;
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${city}`;
   let tempNow = document.querySelector("#current-temp");
-  tempNow.innerHTML = `${temperature}°`;
+  tempNow.innerHTML = `${temperature}`;
   let iconElement = document.querySelector("#current-weather-icon");
   iconElement.setAttribute("src", `${response.data.condition.icon_url}`);
   iconElement.setAttribute("alt", response.data.condition.description);
 }
 
 function showTemp(response) {
-  console.log(response.data.temperature.current);
-  let yourTemp = Math.round(response.data.temperature.current);
+  celsiusTemperature = response.data.temperature.current;
+  let yourTemp = Math.round(celsiusTemperature);
   let currentTemp = document.querySelector("#current-temp");
-  currentTemp.innerHTML = `${yourTemp}°`;
+  currentTemp.innerHTML = `${yourTemp}`;
   let currentCity = response.data.city;
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${currentCity}`;
@@ -70,7 +71,6 @@ function searchForCity(city) {
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showTemperature);
 }
-
 function handleSubmit(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-text-input");
@@ -79,4 +79,29 @@ function handleSubmit(event) {
 
 let citySearch = document.querySelector("#city-search");
 citySearch.addEventListener("submit", handleSubmit);
+
 searchForCity("New York");
+let celsiusTemperature = null;
+
+function showFahrenheitTemp(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemp = Math.round((celsiusTemperature * 9) / 5 + 32);
+  let temperatureElement = document.querySelector("#current-temp");
+  temperatureElement.innerHTML = fahrenheitTemp;
+}
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemp);
+
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#current-temp");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemp);

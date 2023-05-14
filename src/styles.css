@@ -68,7 +68,7 @@ hr {
   height: 72px;
   width: 72px;
   margin: 0 px 0;
-  
+
 }
 
 .temp-now {
@@ -81,20 +81,20 @@ hr {
   max-height: 110px;
 }
 
-.celcium {
-  border: none;
-  padding: 0;
-  background-color: #cceeff;
+.units {
+  font-size: 20px;
+  position: relative;
+  top: -20px;
+}
+
+a {text-decoration: none;}
+
+.active {
+  cursor: default;
   color: #4c5363;
-  transition: all 150ms ease-in-out;
 }
 
-.celcium:hover {
-  color: #000;
-  border-color: #000;
-}
-
-.day {
+day {
   margin-top: 10px;
   margin-bottom: 8px;
   font-size: 18px;
