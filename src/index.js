@@ -80,7 +80,6 @@ function handleSubmit(event) {
 let citySearch = document.querySelector("#city-search");
 citySearch.addEventListener("submit", handleSubmit);
 
-searchForCity("New York");
 let celsiusTemperature = null;
 
 function showFahrenheitTemp(event) {
@@ -105,3 +104,5 @@ function showCelsiusTemp(event) {
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
+
+searchForCity("London");
