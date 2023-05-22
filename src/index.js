@@ -23,6 +23,30 @@ function formatDate(date) {
 
 formatDate(currentTime);
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#weather-forecast");
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2 five-days">
+              <div class="card text-center">
+                <div class="card-header">
+                  ☁️
+                </div>
+                <div class="card-body">3° / 10°C
+                </div>
+                <div class="card-footer text-muted">
+                 ${day}
+                </div>
+              </div>
+            </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showTemperature(response) {
   console.log(response);
   console.log(response.data.temperature.current);
@@ -106,3 +130,4 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
 
 searchForCity("London");
+displayForecast();
