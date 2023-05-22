@@ -23,6 +23,14 @@ function formatDate(date) {
 
 formatDate(currentTime);
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "84fcftd03of3d3844ecba1bafb7d3009";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displayForecast() {
   let forecastElement = document.querySelector("#weather-forecast");
   let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
@@ -31,25 +39,23 @@ function displayForecast() {
     forecastHTML =
       forecastHTML +
       `<div class="col-2 five-days">
-              <div class="card text-center">
-                <div class="card-header">
-                  ☁️
-                </div>
-                <div class="card-body">3° / 10°C
-                </div>
-                <div class="card-footer text-muted">
-                 ${day}
-                </div>
-              </div>
-            </div>`;
+      <div class="card text-center">
+        <div class="card-header">
+          ☁️
+        </div>
+        <div class="card-body">3° / 10°C
+        </div>
+        <div class="card-footer text-muted">
+          ${day}
+        </div>
+      </div>
+    </div>`;
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
 
 function showTemperature(response) {
-  console.log(response);
-  console.log(response.data.temperature.current);
   celsiusTemperature = response.data.temperature.current;
   let temperature = Math.round(celsiusTemperature);
   let city = response.data.city;
@@ -60,6 +66,7 @@ function showTemperature(response) {
   let iconElement = document.querySelector("#current-weather-icon");
   iconElement.setAttribute("src", `${response.data.condition.icon_url}`);
   iconElement.setAttribute("alt", response.data.condition.description);
+  getForecast(response.data.coordinates);
 }
 
 function showTemp(response) {
