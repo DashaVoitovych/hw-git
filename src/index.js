@@ -31,26 +31,49 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(displayForecast);
 }
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  
+let forecast = response.data.daily;
+  
   let forecastElement = document.querySelector("#weather-forecast");
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
+  
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-2 five-days">
-      <div class="card text-center">
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2 five-days">
+        <div class="card text-center">
         <div class="card-header">
-          ☁️
+            <img
+          src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${forecastDay.condition.icon}.png"
+          alt=""
+          width="42"
+        />
         </div>
-        <div class="card-body">3° / 10°C
+        <div class="card-body"><span class="min">${Math.round(
+          forecastDay.temperature.minimum
+        )}°</span> / <span class="max">${Math.round(
+          forecastDay.temperature.maximum
+        )}°C</span>
         </div>
         <div class="card-footer text-muted">
-          ${day}
+          ${formatDay(forecastDay.time)}
         </div>
       </div>
     </div>`;
+    }
   });
+
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
@@ -137,4 +160,4 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
 
 searchForCity("London");
-displayForecast();
+

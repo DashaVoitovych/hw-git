@@ -123,13 +123,13 @@ a {
 .card-header {
   font-size: 16px;
   background-color: #cceeff;
-  padding: 6px 6px;
+  padding: 0;
   border: none;
 }
 
 .card-body {
   font-size: 14px;
-  padding: 10px 5px;
+  padding: 8px 4px;
   font-weight: 500;
   background-color: #cceeff;
 }
