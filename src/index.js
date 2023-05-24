@@ -24,10 +24,8 @@ function formatDate(date) {
 formatDate(currentTime);
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "84fcftd03of3d3844ecba1bafb7d3009";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -104,9 +102,7 @@ function showTemp(response) {
 
 function showPosition(position) {
   let lat = position.coords.latitude;
-  console.log(lat);
   let lon = position.coords.longitude;
-  console.log(lon);
   let apiKey = "84fcftd03of3d3844ecba1bafb7d3009";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemp);
