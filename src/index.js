@@ -136,28 +136,5 @@ citySearch.addEventListener("submit", handleSubmit);
 
 let celsiusTemperature = null;
 
-function showFahrenheitTemp(event) {
-  event.preventDefault();
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let fahrenheitTemp = Math.round((celsiusTemperature * 9) / 5 + 32);
-  let temperatureElement = document.querySelector("#current-temp");
-  temperatureElement.innerHTML = fahrenheitTemp;
-}
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", showFahrenheitTemp);
-
-function showCelsiusTemp(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  let temperatureElement = document.querySelector("#current-temp");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", showCelsiusTemp);
-
 searchForCity("London");
 
