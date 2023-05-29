@@ -40,7 +40,11 @@ function formatDay(timestamp) {
 
 function displayForecast(response) {
   let forecast = response.data.daily;
-
+  console.log(response.data);
+  let minTemp = document.querySelector("#min-temp");
+  minTemp.innerHTML = Math.round(response.data.daily[0].temperature.minimum);
+  let maxTemp = document.querySelector("#max-temp");
+  maxTemp.innerHTML = Math.round(response.data.daily[0].temperature.maximum);
   let forecastElement = document.querySelector("#weather-forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -86,6 +90,10 @@ function showTemperature(response) {
   h1.innerHTML = `${city}`;
   let tempNow = document.querySelector("#current-temp");
   tempNow.innerHTML = `${temperature}`;
+  let humidity = document.querySelector("#humidity");
+  humidity.innerHTML = response.data.temperature.humidity;
+  let windSpeed = document.querySelector("#wind-speed");
+  windSpeed.innerHTML = Math.round(response.data.wind.speed);
   let iconElement = document.querySelector("#current-weather-icon");
   iconElement.setAttribute("src", `${response.data.condition.icon_url}`);
   iconElement.setAttribute("alt", response.data.condition.description);
@@ -97,6 +105,10 @@ function showTemp(response) {
   let yourTemp = Math.round(celsiusTemperature);
   let currentTemp = document.querySelector("#current-temp");
   currentTemp.innerHTML = `${yourTemp}`;
+  let humidity = document.querySelector("#humidity");
+  humidity.innerHTML = response.data.temperature.humidity;
+  let windSpeed = document.querySelector("#wind-speed");
+  windSpeed.innerHTML = Math.round(response.data.wind.speed);
   let currentCity = response.data.city;
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${currentCity}`;
@@ -127,6 +139,7 @@ currentLocation.addEventListener("click", getCurrentPosition);
 function searchForCity(city) {
   let units = "metric";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
+  console.log(apiUrl);
   axios.get(apiUrl).then(showTemperature);
 }
 function handleSubmit(event) {
