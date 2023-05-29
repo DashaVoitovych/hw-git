@@ -23,8 +23,9 @@ function formatDate(date) {
 
 formatDate(currentTime);
 
+let apiKey = "84fcftd03of3d3844ecba1bafb7d3009";
+
 function getForecast(coordinates) {
-  let apiKey = "84fcftd03of3d3844ecba1bafb7d3009";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
@@ -38,11 +39,10 @@ function formatDay(timestamp) {
 }
 
 function displayForecast(response) {
-  
-let forecast = response.data.daily;
-  
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#weather-forecast");
-  
+
   let forecastHTML = `<div class="row">`;
 
   forecast.forEach(function (forecastDay, index) {
@@ -53,7 +53,9 @@ let forecast = response.data.daily;
         <div class="card text-center">
         <div class="card-header">
             <img
-          src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${forecastDay.condition.icon}.png"
+          src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+            forecastDay.condition.icon
+          }.png"
           alt=""
           width="42"
         />
@@ -100,23 +102,29 @@ function showTemp(response) {
   h1.innerHTML = `${currentCity}`;
 }
 
+function sendPositionForecast(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  let apiKey = "84fcftd03of3d3844ecba1bafb7d3009";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemp);
 }
 
 function getCurrentPosition() {
   navigator.geolocation.getCurrentPosition(showPosition);
+  navigator.geolocation.getCurrentPosition(sendPositionForecast);
 }
 
 let currentLocation = document.querySelector("#geo-mark");
 currentLocation.addEventListener("click", getCurrentPosition);
 
 function searchForCity(city) {
-  let apiKey = "84fcftd03of3d3844ecba1bafb7d3009";
   let units = "metric";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showTemperature);
@@ -133,4 +141,3 @@ citySearch.addEventListener("submit", handleSubmit);
 let celsiusTemperature = null;
 
 searchForCity("London");
-
