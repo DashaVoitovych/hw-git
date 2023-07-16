@@ -10,6 +10,7 @@ h1 {
   font-weight: 400;
   text-align: left;
   padding: 25px 0px 0 0px;
+  font-size: 34px;
 }
 
 hr {
@@ -23,6 +24,15 @@ ul {
   padding-left: 0px;
   margin-bottom: 8px;
   font-size: 16px;
+}
+
+i {
+  background-color: #cceeff;
+  font-size: 22px;
+  padding-top: 22px;
+  width: 22px;
+  height: 66px;
+  line-height: 48px;
 }
 
 .position-wrap {
@@ -61,19 +71,23 @@ ul {
 }
 
 .geo-mark {
-  display: block;
+  display: flex;
   border: none;
   padding: 0;
   background-color: #cceeff;
   width: fit-content;
   color: #4c5363;
   transition: all 150ms ease-in-out;
+
+  height: 73px;
 }
 
 .geo-mark:hover {
   color: #000;
   cursor: pointer;
 }
+
+
 
 .current-weather-icon {
   height: 72px;
