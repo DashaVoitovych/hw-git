@@ -1,12 +1,11 @@
 body {
-  background-color: #fff;
+  background-color: #f4f4f2;
   color: #4c5363;
   font-family: "Montserrat", sans-serif;
   margin-top: 100px;
 }
 
 h1 {
-  line-height: 1.2;
   font-weight: 400;
   text-align: left;
   padding: 25px 0px 0 0px;
@@ -27,11 +26,9 @@ ul {
 }
 
 i {
-  background-color: #cceeff;
+  background-color: #b1e5f9;
   font-size: 22px;
   padding-top: 22px;
-  width: 22px;
-  height: 66px;
   line-height: 48px;
 }
 
@@ -43,7 +40,7 @@ i {
 
 .wrapper {
   padding: 10px 30px;
-  background-color: #cceeff;
+  background-color: #b1e5f9;
   border-radius: 10px;
   box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
 }
@@ -53,7 +50,7 @@ i {
   display: block;
   margin: 4px auto;
   padding: 1px 50px;
-  background-color: #cceeff;
+  background-color: #b1e5f9;
   text-align: center;
   font-size: 16px;
   transition: all 200ms ease-in-out;
@@ -74,20 +71,16 @@ i {
   display: flex;
   border: none;
   padding: 0;
-  background-color: #cceeff;
+  background-color: #b1e5f9;
   width: fit-content;
   color: #4c5363;
   transition: all 150ms ease-in-out;
-
-  height: 73px;
 }
 
 .geo-mark:hover {
   color: #000;
   cursor: pointer;
 }
-
-
 
 .current-weather-icon {
   height: 72px;
@@ -142,23 +135,23 @@ i {
 
 .card-header {
   font-size: 16px;
-  background-color: #cceeff;
+  background-color: #b1e5f9;
   padding: 0;
   border: none;
 }
 
 .card-body {
   font-size: 14px;
-  padding: 8px 4px;
+  padding: 8px 3px;
   font-weight: 500;
-  background-color: #cceeff;
+  background-color: #b1e5f9;
 }
 
 .card-footer {
   font-size: 10px;
   font-weight: 400;
   padding: 8px 6px;
-  background-color: #cceeff;
+  background-color: #b1e5f9;
   border: none;
 }
 

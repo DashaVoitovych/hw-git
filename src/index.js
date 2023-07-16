@@ -1,5 +1,6 @@
-let currentTime = new Date();
-function formatDate(date) {
+// let currentTime = new Date();
+function formatDate(timestamp) {
+  let time = new Date(timestamp)
   let days = [
     "Sunday",
     "Monday",
@@ -9,19 +10,19 @@ function formatDate(date) {
     "Friday",
     "Saturday",
   ];
-  let currentDay = days[date.getDay()];
-  let currentHour = date.getHours();
-  let currentMinute = date.getMinutes();
-  let currentYear = date.getFullYear();
-  let currentMonth = ("0" + (date.getMonth() + 1)).slice(-2);
-  let currentDate = `0${date.getDate()}`.slice(-2);
+  let currentDay = days[time.getDay()];
+  let currentHour = `0${time.getHours()}`.slice(-2);
+  let currentMinute = `0${time.getMinutes()}`.slice(-2);
+  let currentYear = time.getFullYear();
+  let currentMonth = ("0" + (time.getMonth() + 1)).slice(-2);
+  let currentDate = `0${time.getDate()}`.slice(-2);
   let dayHour = document.querySelector("#day-hour");
   dayHour.innerHTML = `${currentDay}  ${currentHour}:${currentMinute}`;
   let fullTime = document.querySelector("#date");
   fullTime.innerHTML = `${currentDate}.${currentMonth}.${currentYear}`;
 }
 
-formatDate(currentTime);
+// formatDate(currentTime);
 
 let apiKey = "84fcftd03of3d3844ecba1bafb7d3009";
 
@@ -50,7 +51,7 @@ function displayForecast(response) {
   let forecastHTML = `<div class="row">`;
 
   forecast.forEach(function (forecastDay, index) {
-    if (index < 5) {
+    if (index > 0 && index < 6) {
       forecastHTML =
         forecastHTML +
         `<div class="col-2 five-days">
@@ -97,6 +98,7 @@ function showTemperature(response) {
   let iconElement = document.querySelector("#current-weather-icon");
   iconElement.setAttribute("src", `${response.data.condition.icon_url}`);
   iconElement.setAttribute("alt", response.data.condition.description);
+  formatDate(response.data.time * 1000)
   getForecast(response.data.coordinates);
 }
 
@@ -112,6 +114,7 @@ function showTemp(response) {
   let currentCity = response.data.city;
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${currentCity}`;
+  formatDate(response.data.daily.time * 1000);
 }
 
 function sendPositionForecast(position) {
@@ -146,6 +149,7 @@ function handleSubmit(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-text-input");
   searchForCity(cityInput.value);
+  cityInput.value = "";
 }
 
 let citySearch = document.querySelector("#city-search");
